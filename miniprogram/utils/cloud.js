@@ -68,32 +68,9 @@ async function getStatusHistory({ filter = 'all', page = 1, pageSize = 20 } = {}
   return callFunction('getHistory', { filter, page, pageSize });
 }
 
-/** 获取小纸条列表（分页）
- * @param {string} myOpenid - 当前用户的 openid（必填）
- */
-async function getNotes({ myOpenid = null, page = 1, pageSize = 30 } = {}) {
-  try {
-    let query = db.collection('notes');
-
-    if (myOpenid) {
-      // 双方的消息：我是发送者或接收者
-      query = query.where(_.or([
-        { fromId: myOpenid },
-        { toId: myOpenid },
-      ]));
-    }
-
-    const { data } = await query
-      .orderBy('createdAt', 'desc')
-      .skip((page - 1) * pageSize)
-      .limit(pageSize)
-      .get();
-
-    return data.reverse(); // 返回正序
-  } catch (err) {
-    console.error('[cloud] getNotes 失败', err);
-    throw err;
-  }
+/** 获取小纸条列表（通过云函数） */
+async function getNotes({ page = 1, pageSize = 30 } = {}) {
+  return callFunction('getNotes', { page, pageSize });
 }
 
 /** 监听对方状态变更（实时） */

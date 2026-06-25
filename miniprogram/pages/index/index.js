@@ -32,10 +32,22 @@ Page({
     await this.initPage();
   },
 
-  onShow() {
-    // 每次回到首页刷新状态
-    if (this.data.isBound) {
-      this.refreshStatus();
+  async onShow() {
+    // 每次回到首页重新检查绑定状态和 partnerId
+    try {
+      const profile = await cloud.getMyProfile();
+      if (profile && profile.partnerId) {
+        app.globalData.isBound = true;
+        app.globalData.partnerId = profile.partnerId;
+        app.globalData.currentUser = profile;
+        this.setData({ isBound: true });
+        this.refreshStatus();
+        this.startWatch();
+      } else {
+        this.setData({ isBound: false, loading: false });
+      }
+    } catch (err) {
+      console.error('[index] onShow 刷新失败', err);
     }
   },
 

@@ -36,9 +36,7 @@ Page({
 
   async loadNotes() {
     try {
-      const myOpenid = app.globalData.currentUser?._openid || '';
       const data = await cloud.getNotes({
-        myOpenid,
         page: this.data.page,
         pageSize: PAGE_SIZE,
       });
