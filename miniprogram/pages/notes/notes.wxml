@@ -1,0 +1,74 @@
+<!-- pages/notes/notes.wxml -->
+<view class="page-notes">
+
+  <!-- 消息列表 -->
+  <scroll-view
+    class="notes__list"
+    scroll-y
+    scroll-into-view="{{scrollToId}}"
+    scroll-with-animation
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <!-- 加载更多 -->
+    <view wx:if="{{hasMore}}" class="notes__load-more" bind:tap="loadMore">
+      <text class="text-small text-muted">加载更多</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{!loading && notes.length === 0}}" class="empty-state" style="margin-top: 200rpx;">
+      <text class="empty-state__icon">💌</text>
+      <text class="empty-state__text">还没有小纸条</text>
+      <text class="empty-state__text text-small">给对方发一条吧～</text>
+    </view>
+
+    <!-- 消息气泡 -->
+    <block wx:for="{{notes}}" wx:key="_id">
+      <view
+        id="note-{{item._id}}"
+        class="note-bubble {{item.isMe ? 'note-bubble--me' : 'note-bubble--partner'}}"
+      >
+        <!-- 对方头像 -->
+        <image
+          wx:if="{{!item.isMe}}"
+          class="note-bubble__avatar"
+          src="{{partnerAvatar}}"
+          mode="aspectFill"
+        />
+        <!-- 气泡内容 -->
+        <view class="note-bubble__content {{item.isMe ? 'note-bubble__content--me' : 'note-bubble__content--partner'}}">
+          <text class="note-bubble__text">{{item.content}}</text>
+        </view>
+        <!-- 我的头像 -->
+        <image
+          wx:if="{{item.isMe}}"
+          class="note-bubble__avatar"
+          src="{{myAvatar}}"
+          mode="aspectFill"
+        />
+      </view>
+      <view class="note-bubble__time {{item.isMe ? 'note-bubble__time--me' : 'note-bubble__time--partner'}}">
+        {{item.timeStr}}
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 输入栏 -->
+  <view class="notes__input-bar safe-bottom">
+    <input
+      class="notes__input"
+      value="{{inputValue}}"
+      placeholder="输入想说的话..."
+      maxlength="200"
+      confirm-type="send"
+      bind:input="onInput"
+      bind:confirm="onSend"
+    />
+    <view
+      class="notes__send-btn {{inputValue ? 'notes__send-btn--active' : ''}}"
+      bind:tap="onSend"
+    >
+      <text>发送</text>
+    </view>
+  </view>
+</view>

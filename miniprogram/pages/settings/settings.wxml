@@ -1,0 +1,80 @@
+<!-- pages/settings/settings.wxml -->
+<view class="page-settings">
+
+  <!-- 纪念日设置 -->
+  <view class="card">
+    <text class="settings__section-title">纪念日设置</text>
+
+    <view class="settings__row">
+      <text class="settings__label">在一起的日子</text>
+      <picker mode="date" value="{{anniversary}}" bind:change="onAnniversaryChange">
+        <text class="settings__value {{anniversary ? '' : 'text-muted'}}">
+          {{anniversary || '点击设置'}}
+        </text>
+      </picker>
+    </view>
+
+    <view class="settings__row">
+      <text class="settings__label">下次见面</text>
+      <picker mode="date" value="{{nextMeet}}" bind:change="onNextMeetChange">
+        <text class="settings__value {{nextMeet ? '' : 'text-muted'}}">
+          {{nextMeet || '点击设置'}}
+        </text>
+      </picker>
+    </view>
+
+    <view wx:if="{{daysTogether > 0}}" class="settings__countdown">
+      <text>💕 已经在一起 {{daysTogether}} 天啦</text>
+      <text wx:if="{{nextMeetDays > 0}}" style="margin-left: 16rpx;">
+        📅 距离见面还有 {{nextMeetDays}} 天
+      </text>
+    </view>
+  </view>
+
+  <!-- 通知设置 -->
+  <view class="card">
+    <text class="settings__section-title">通知设置</text>
+
+    <view class="settings__row">
+      <text class="settings__label">状态变更通知</text>
+      <switch
+        checked="{{notifyStatus}}"
+        bind:change="onNotifyStatusChange"
+        color="#FF6B81"
+      />
+    </view>
+
+    <view class="settings__row">
+      <text class="settings__label">小纸条通知</text>
+      <switch
+        checked="{{notifyNote}}"
+        bind:change="onNotifyNoteChange"
+        color="#FF6B81"
+      />
+    </view>
+
+    <text class="text-small text-muted" style="display:block;margin-top:12rpx;">
+      建议开启小纸条通知，以免错过 TA 的消息
+    </text>
+  </view>
+
+  <!-- 关于 -->
+  <view class="card">
+    <text class="settings__section-title">关于</text>
+
+    <view class="settings__row">
+      <text class="settings__label">版本</text>
+      <text class="settings__value text-muted">v1.0.0</text>
+    </view>
+
+    <view class="settings__row" bind:tap="onViewAgreement">
+      <text class="settings__label">用户协议</text>
+      <text class="settings__value text-muted">▶</text>
+    </view>
+
+    <view class="settings__row" bind:tap="onViewPrivacy">
+      <text class="settings__label">隐私政策</text>
+      <text class="settings__value text-muted">▶</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,89 @@
+<!-- pages/bind/bind.wxml -->
+<view class="page-bind">
+
+  <!-- 欢迎区 -->
+  <view class="bind__welcome">
+    <text class="bind__logo">💕</text>
+    <text class="bind__title">欢迎来到心心相连</text>
+    <text class="bind__subtitle">和你的 TA 保持连结</text>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="bind__tabs">
+    <view
+      class="bind__tab {{activeTab === 'input' ? 'bind__tab--active' : ''}}"
+      bind:tap="switchTab"
+      data-tab="input"
+    >
+      输入邀请码
+    </view>
+    <view
+      class="bind__tab {{activeTab === 'generate' ? 'bind__tab--active' : ''}}"
+      bind:tap="switchTab"
+      data-tab="generate"
+    >
+      我的邀请码
+    </view>
+  </view>
+
+  <!-- 输入邀请码 -->
+  <view wx:if="{{activeTab === 'input'}}" class="card">
+    <text class="bind__label">输入 TA 的邀请码</text>
+
+    <view class="bind__code-inputs">
+      <input
+        wx:for="{{codeDigits}}"
+        wx:key="index"
+        class="bind__code-box {{codeDigits[index] ? 'bind__code-box--filled' : ''}}"
+        type="text"
+        maxlength="1"
+        value="{{codeDigits[index]}}"
+        data-index="{{index}}"
+        bind:input="onCodeInput"
+        bind:focus="onCodeFocus"
+        focus="{{focusIndex === index}}"
+      />
+    </view>
+
+    <view wx:if="{{inputError}}" class="bind__error">{{inputError}}</view>
+
+    <button
+      class="btn-primary"
+      style="margin-top: 32rpx;"
+      bind:tap="onSubmitCode"
+      loading="{{submitting}}"
+      disabled="{{submitting}}"
+    >
+      确认绑定
+    </button>
+  </view>
+
+  <!-- 生成邀请码 -->
+  <view wx:if="{{activeTab === 'generate'}}" class="card">
+    <text class="bind__label">我的邀请码</text>
+    <text class="bind__desc">将邀请码发送给 TA，对方输入后即可绑定</text>
+
+    <view class="bind__code-display">
+      <text class="bind__code-text">{{myCode || '--------'}}</text>
+    </view>
+
+    <view wx:if="{{codeExpireText}}" class="bind__expire">
+      {{codeExpireText}}
+    </view>
+
+    <view class="bind__actions">
+      <button class="btn-outline" bind:tap="onCopyCode" disabled="{{!myCode}}">
+        复制邀请码
+      </button>
+      <button class="btn-primary" open-type="share" disabled="{{!myCode}}">
+        发送给微信好友
+      </button>
+    </view>
+  </view>
+
+  <!-- 提示 -->
+  <view class="bind__tips">
+    <text>⚠️ 邀请码 24 小时内有效</text>
+    <text>绑定后不可解除，请确认是 TA 哦</text>
+  </view>
+</view>

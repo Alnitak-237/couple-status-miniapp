@@ -1,0 +1,104 @@
+<!-- components/status-picker/status-picker.wxml -->
+<view wx:if="{{show}}" class="picker-overlay" bind:tap="onClose">
+  <view class="picker-panel" catch:tap="noop">
+
+    <!-- 标题栏 -->
+    <view class="picker__header">
+      <text class="picker__title">切换状态</text>
+      <text class="picker__close" bind:tap="onClose">✕</text>
+    </view>
+
+    <!-- 预设状态网格 3x3 -->
+    <view class="picker__grid">
+      <view
+        wx:for="{{presetStatuses}}"
+        wx:key="id"
+        class="picker__item {{selectedId === item.id ? 'picker__item--active' : ''}}"
+        data-id="{{item.id}}"
+        data-emoji="{{item.emoji}}"
+        data-text="{{item.text}}"
+        data-notify="{{item.notify}}"
+        bind:tap="onSelectPreset"
+      >
+        <text class="picker__item-emoji">{{item.emoji}}</text>
+        <text class="picker__item-text">{{item.text}}</text>
+      </view>
+
+      <!-- 自定义状态（来自 mine 页面添加的） -->
+      <view
+        wx:for="{{customStatuses}}"
+        wx:key="index"
+        class="picker__item {{selectedId === ('custom_' + index) ? 'picker__item--active' : ''}}"
+        data-id="custom_{{index}}"
+        data-emoji="{{item.emoji}}"
+        data-text="{{item.text}}"
+        bind:tap="onSelectCustomStatus"
+      >
+        <text class="picker__item-emoji">{{item.emoji}}</text>
+        <text class="picker__item-text">{{item.text}}</text>
+      </view>
+
+      <!-- 自定义入口 -->
+      <view
+        class="picker__item {{isCustomMode ? 'picker__item--active' : ''}}"
+        bind:tap="onEnterCustom"
+      >
+        <text class="picker__item-emoji">✏️</text>
+        <text class="picker__item-text">新建</text>
+      </view>
+    </view>
+
+    <!-- 自定义状态输入区 -->
+    <view wx:if="{{isCustomMode}}" class="picker__custom">
+      <view class="picker__custom-row">
+        <text class="picker__custom-label">Emoji</text>
+        <input
+          class="picker__custom-input picker__custom-input--emoji"
+          value="{{customEmoji}}"
+          placeholder="选一个"
+          maxlength="4"
+          bind:input="onCustomEmojiInput"
+        />
+      </view>
+      <view class="picker__custom-row">
+        <text class="picker__custom-label">状态</text>
+        <input
+          class="picker__custom-input"
+          value="{{customText}}"
+          placeholder="输入状态（最多10字）"
+          maxlength="10"
+          bind:input="onCustomTextInput"
+        />
+      </view>
+      <view wx:if="{{customError}}" class="picker__custom-error">{{customError}}</view>
+    </view>
+
+    <!-- 分隔 -->
+    <view class="picker__divider"></view>
+
+    <!-- 心情选择 -->
+    <view class="picker__mood">
+      <text class="picker__mood-label">今日心情（可选）</text>
+      <view class="picker__mood-list">
+        <view
+          wx:for="{{moods}}"
+          wx:key="id"
+          class="picker__mood-item {{selectedMood === item.id ? 'picker__mood-item--active' : ''}}"
+          data-mood="{{item.id}}"
+          bind:tap="onSelectMood"
+        >
+          <text class="picker__mood-emoji">{{item.emoji}}</text>
+          <text class="picker__mood-text">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 确认按钮 -->
+    <view class="picker__footer safe-bottom">
+      <button class="btn-primary picker__confirm" bind:tap="onConfirm">
+        确认切换
+      </button>
+    </view>
+
+  </view>
+</view>

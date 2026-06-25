@@ -1,0 +1,121 @@
+/* pages/notes/notes.wxss */
+
+.page-notes {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--primary-bg);
+}
+
+/* 消息列表 */
+.notes__list {
+  flex: 1;
+  padding: 20rpx 28rpx;
+}
+
+.notes__load-more {
+  text-align: center;
+  padding: 20rpx;
+}
+
+/* 消息气泡 */
+.note-bubble {
+  display: flex;
+  margin-bottom: 8rpx;
+  align-items: flex-start;
+}
+
+.note-bubble--me {
+  flex-direction: row-reverse;
+}
+
+.note-bubble__avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #F0F0F0;
+}
+
+.note-bubble__content {
+  max-width: 420rpx;
+  padding: 20rpx 28rpx;
+  border-radius: 24rpx;
+  margin: 0 16rpx;
+  word-break: break-all;
+}
+
+.note-bubble__content--partner {
+  background: #FFFFFF;
+  border-top-left-radius: 6rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+
+.note-bubble__content--me {
+  background: linear-gradient(135deg, #FF6B81, #FF8E9E);
+  border-top-right-radius: 6rpx;
+}
+
+.note-bubble__text {
+  font-size: 30rpx;
+  line-height: 1.5;
+}
+
+.note-bubble--me .note-bubble__text {
+  color: #FFFFFF;
+}
+
+.note-bubble--partner .note-bubble__text {
+  color: var(--text-primary);
+}
+
+.note-bubble__time {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  margin-bottom: 24rpx;
+  margin-left: 96rpx;
+}
+
+.note-bubble__time--me {
+  text-align: right;
+  margin-right: 96rpx;
+  margin-left: 0;
+}
+
+/* 输入栏 */
+.notes__input-bar {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 16rpx 24rpx;
+  border-top: 1rpx solid #F0F0F0;
+  gap: 16rpx;
+}
+
+.notes__input {
+  flex: 1;
+  background: #F5F5F5;
+  border-radius: 40rpx;
+  padding: 18rpx 28rpx;
+  font-size: 28rpx;
+  height: 72rpx;
+}
+
+.notes__send-btn {
+  width: 100rpx;
+  height: 72rpx;
+  border-radius: 40rpx;
+  background: #E0E0E0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #999999;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.notes__send-btn--active {
+  background: linear-gradient(135deg, #FF6B81, #FF8E9E);
+  color: #FFFFFF;
+}

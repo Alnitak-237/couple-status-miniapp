@@ -1,0 +1,114 @@
+<!-- pages/mine/mine.wxml -->
+<view class="page-mine">
+
+  <!-- 头像区域 -->
+  <view class="mine__avatar-section">
+    <view class="mine__avatar-wrap" bind:tap="onChangeAvatar">
+      <image
+        class="mine__avatar"
+        src="{{avatarUrl}}"
+        mode="aspectFill"
+        wx:if="{{avatarUrl}}"
+      />
+      <text wx:else class="mine__avatar-placeholder">👤</text>
+      <view class="mine__avatar-camera">📷</view>
+    </view>
+    <text class="mine__avatar-hint">点击更换头像</text>
+  </view>
+
+  <!-- 昵称 -->
+  <view class="card mine__nickname-row">
+    <text class="mine__label">昵称</text>
+    <input
+      class="mine__nickname-input"
+      value="{{nickName}}"
+      placeholder="输入昵称"
+      maxlength="20"
+      bind:blur="onNicknameBlur"
+    />
+  </view>
+
+  <!-- 当前状态 -->
+  <view class="card">
+    <text class="mine__section-title">当前状态</text>
+    <view class="mine__status-display" bind:tap="onChangeStatus">
+      <text class="mine__status-emoji">{{currentStatus.emoji || '🌟'}}</text>
+      <text class="mine__status-text">{{currentStatus.status || '点击设置状态'}}</text>
+      <text class="text-muted" style="margin-left:auto;">切换 ▶</text>
+    </view>
+  </view>
+
+  <!-- 自定义状态列表 -->
+  <view class="card">
+    <text class="mine__section-title">
+      我的自定义状态
+      <text class="text-small text-muted">（{{customStatuses.length}}/{{maxCustom}}）</text>
+    </text>
+
+    <view wx:if="{{customStatuses.length === 0}}" class="empty-state" style="padding: 40rpx 0;">
+      <text class="empty-state__text">暂无自定义状态</text>
+    </view>
+
+    <view wx:for="{{customStatuses}}" wx:key="index" class="mine__custom-item">
+      <text class="mine__custom-emoji">{{item.emoji}}</text>
+      <text class="mine__custom-text">{{item.text}}</text>
+      <text class="mine__custom-delete" data-index="{{index}}" bind:tap="onDeleteCustom">✕</text>
+    </view>
+
+    <view
+      wx:if="{{customStatuses.length < maxCustom}}"
+      class="mine__add-custom"
+      bind:tap="onAddCustom"
+    >
+      <text>+ 添加自定义状态</text>
+    </view>
+  </view>
+
+  <!-- 绑定信息 -->
+  <view class="card">
+    <text class="mine__section-title">绑定信息</text>
+    <view class="mine__bind-info">
+      <text wx:if="{{partnerName}}">已与「{{partnerName}}」绑定</text>
+      <text wx:else class="text-muted">未绑定</text>
+    </view>
+    <view
+      wx:if="{{partnerName}}"
+      class="mine__unbind"
+      bind:tap="onUnbind"
+    >
+      <text>解除绑定（危险操作）</text>
+    </view>
+  </view>
+
+  <!-- 添加自定义状态弹窗 -->
+  <view wx:if="{{showAddCustom}}" class="custom-dialog-overlay" bind:tap="onCancelAddCustom">
+    <view class="custom-dialog" catch:tap="noop">
+      <text class="custom-dialog__title">添加自定义状态</text>
+      <view class="custom-dialog__row">
+        <text class="custom-dialog__label">Emoji</text>
+        <input
+          class="custom-dialog__input custom-dialog__input--emoji"
+          value="{{newCustomEmoji}}"
+          placeholder="🌟"
+          maxlength="4"
+          bind:input="onNewCustomEmoji"
+        />
+      </view>
+      <view class="custom-dialog__row">
+        <text class="custom-dialog__label">状态</text>
+        <input
+          class="custom-dialog__input"
+          value="{{newCustomText}}"
+          placeholder="输入状态（最多10字）"
+          maxlength="10"
+          bind:input="onNewCustomText"
+        />
+      </view>
+      <view wx:if="{{addError}}" class="custom-dialog__error">{{addError}}</view>
+      <view class="custom-dialog__btns">
+        <button class="btn-outline" bind:tap="onCancelAddCustom">取消</button>
+        <button class="btn-primary" bind:tap="onConfirmAddCustom">确认</button>
+      </view>
+    </view>
+  </view>
+</view>

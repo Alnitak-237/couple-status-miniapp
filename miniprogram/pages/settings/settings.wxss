@@ -1,0 +1,49 @@
+/* pages/settings/settings.wxss */
+
+.page-settings {
+  min-height: 100vh;
+  padding: 20rpx 0 60rpx;
+  background: var(--primary-bg);
+}
+
+.settings__section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24rpx;
+  display: block;
+}
+
+.settings__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.settings__row:last-child {
+  border-bottom: none;
+}
+
+.settings__label {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+
+.settings__value {
+  font-size: 28rpx;
+  color: var(--primary);
+}
+
+.settings__countdown {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #F5F5F5;
+  font-size: 26rpx;
+  color: var(--primary);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

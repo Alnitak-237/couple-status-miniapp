@@ -1,0 +1,33 @@
+# 依赖
+node_modules/
+miniprogram_npm/
+
+# 微信开发者工具
+*.wxss.map
+*.js.map
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.swp
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# 云函数 node_modules（由云端安装）
+cloudfunctions/*/node_modules/
+
+# 内部设计文档（不上传）
+需求报告.md
+技术方案.md
+UI设计文档.md
+数据库与接口设计.md
+工程化与开发规范.md
+部署指南.md
+测试用例.md

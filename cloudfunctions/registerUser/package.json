@@ -1,0 +1,9 @@
+{
+  "name": "registerUser",
+  "version": "1.0.0",
+  "description": "新用户注册，创建 users 表记录",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "status-card": "/components/status-card/status-card",
+    "status-picker": "/components/status-picker/status-picker"
+  },
+  "navigationBarTitleText": "心心相连",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

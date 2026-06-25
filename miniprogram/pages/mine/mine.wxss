@@ -1,0 +1,228 @@
+/* pages/mine/mine.wxss */
+
+.page-mine {
+  min-height: 100vh;
+  padding: 0 0 60rpx;
+  background: var(--primary-bg);
+}
+
+/* 头像 */
+.mine__avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0 20rpx;
+}
+
+.mine__avatar-wrap {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: #F0F0F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mine__avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 4rpx solid #FFFFFF;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+}
+
+.mine__avatar-placeholder {
+  font-size: 64rpx;
+}
+
+.mine__avatar-camera {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 44rpx;
+  height: 44rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.12);
+}
+
+.mine__avatar-hint {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--text-muted);
+}
+
+/* 昵称 */
+.mine__nickname-row {
+  display: flex;
+  align-items: center;
+}
+
+.mine__label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  width: 100rpx;
+  flex-shrink: 0;
+}
+
+.mine__nickname-input {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: right;
+}
+
+/* 区块标题 */
+.mine__section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+/* 当前状态展示 */
+.mine__status-display {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #FFF5F5, #FFF0F3);
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.mine__status-emoji {
+  font-size: 44rpx;
+  margin-right: 16rpx;
+}
+
+.mine__status-text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* 自定义状态 */
+.mine__custom-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.mine__custom-item:last-child {
+  border-bottom: none;
+}
+
+.mine__custom-emoji {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.mine__custom-text {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.mine__custom-delete {
+  color: #FF4D4F;
+  font-size: 28rpx;
+  padding: 8rpx 16rpx;
+}
+
+.mine__add-custom {
+  text-align: center;
+  padding: 24rpx;
+  color: var(--primary);
+  font-size: 28rpx;
+  border: 2rpx dashed #FFCCD5;
+  border-radius: 16rpx;
+  margin-top: 16rpx;
+}
+
+/* 绑定信息 */
+.mine__bind-info {
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.mine__unbind {
+  color: #FF4D4F;
+  font-size: 24rpx;
+  text-align: right;
+}
+
+/* 添加弹窗 */
+.custom-dialog-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-dialog {
+  width: 600rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx 36rpx;
+}
+
+.custom-dialog__title {
+  font-size: 34rpx;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 32rpx;
+  display: block;
+}
+
+.custom-dialog__row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.custom-dialog__label {
+  width: 100rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.custom-dialog__input {
+  flex: 1;
+  background: #F5F5F5;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  font-size: 28rpx;
+}
+
+.custom-dialog__input--emoji {
+  max-width: 120rpx;
+}
+
+.custom-dialog__error {
+  color: #FF4D4F;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.custom-dialog__btns {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+.custom-dialog__btns .btn-outline,
+.custom-dialog__btns .btn-primary {
+  flex: 1;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+}

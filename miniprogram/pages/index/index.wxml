@@ -1,0 +1,82 @@
+<!-- pages/index/index.wxml -->
+<view class="page-index">
+
+  <!-- 未绑定提示 -->
+  <view wx:if="{{!isBound}}" class="empty-state" style="margin-top: 200rpx;">
+    <text class="empty-state__icon">💕</text>
+    <text class="empty-state__text">你还没有和 TA 绑定哦</text>
+    <button class="btn-primary" style="margin-top: 40rpx;" bind:tap="goBind">
+      去绑定
+    </button>
+  </view>
+
+  <!-- 已绑定：双人状态 -->
+  <view wx:else>
+
+    <!-- 纪念日倒计时（骨架） -->
+    <view wx:if="{{anniversary}}" class="anniversary-bar">
+      <text>💕 在一起 {{daysTogether}} 天</text>
+      <text wx:if="{{nextMeetDays}}" style="margin-left: 20rpx;">
+        📅 距离见面还有 {{nextMeetDays}} 天
+      </text>
+    </view>
+
+    <!-- 加载中骨架屏 -->
+    <view wx:if="{{loading}}" class="skeleton-card card">
+      <view style="display:flex;align-items:center;margin-bottom:24rpx;">
+        <view class="skeleton" style="width:80rpx;height:80rpx;border-radius:50%;"></view>
+        <view style="margin-left:20rpx;">
+          <view class="skeleton" style="width:120rpx;height:32rpx;margin-bottom:8rpx;"></view>
+          <view class="skeleton" style="width:80rpx;height:24rpx;"></view>
+        </view>
+      </view>
+      <view class="skeleton" style="width:100%;height:120rpx;border-radius:20rpx;"></view>
+    </view>
+
+    <!-- 对方状态卡片 -->
+    <status-card
+      wx:if="{{!loading}}"
+      isMine="{{false}}"
+      nickName="{{partner.nickName}}"
+      avatarUrl="{{partner.avatarUrl}}"
+      emoji="{{partnerStatus.emoji}}"
+      statusText="{{partnerStatus.status}}"
+      moodEmoji="{{partnerStatus.moodEmoji}}"
+      moodLabel="{{partnerStatus.moodLabel}}"
+      updatedAt="{{partnerStatus.updatedAt}}"
+      online="{{partner.online}}"
+      bind:sendnote="onSendNoteToPartner"
+    />
+
+    <!-- 分隔线 -->
+    <view class="divider">
+      <view class="divider__line"></view>
+      <text class="divider__text">我们</text>
+      <view class="divider__line"></view>
+    </view>
+
+    <!-- 我的状态卡片 -->
+    <status-card
+      wx:if="{{!loading}}"
+      isMine="{{true}}"
+      nickName="{{myProfile.nickName}}"
+      avatarUrl="{{myProfile.avatarUrl}}"
+      emoji="{{myStatus.emoji}}"
+      statusText="{{myStatus.status}}"
+      moodEmoji="{{myStatus.moodEmoji}}"
+      moodLabel="{{myStatus.moodLabel}}"
+      updatedAt="{{myStatus.updatedAt}}"
+      online="{{true}}"
+      bind:tap="onMyCardTap"
+    />
+
+  </view>
+
+  <!-- 状态选择器弹窗 -->
+  <status-picker
+    show="{{showPicker}}"
+    currentStatus="{{myStatus}}"
+    bind:close="onPickerClose"
+    bind:confirm="onStatusConfirm"
+  />
+</view>

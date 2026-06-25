@@ -1,0 +1,57 @@
+<!-- pages/history/history.wxml -->
+<view class="page-history">
+
+  <!-- 筛选 Tab -->
+  <view class="history__tabs">
+    <view
+      class="history__tab {{filter === 'all' ? 'history__tab--active' : ''}}"
+      bind:tap="onFilter"
+      data-filter="all"
+    >全部</view>
+    <view
+      class="history__tab {{filter === 'me' ? 'history__tab--active' : ''}}"
+      bind:tap="onFilter"
+      data-filter="me"
+    >我的</view>
+    <view
+      class="history__tab {{filter === 'partner' ? 'history__tab--active' : ''}}"
+      bind:tap="onFilter"
+      data-filter="partner"
+    >TA 的</view>
+  </view>
+
+  <!-- 时间线 -->
+  <view wx:if="{{!loading && groupedHistory.length > 0}}" class="history__timeline">
+    <block wx:for="{{groupedHistory}}" wx:key="date">
+      <view class="timeline__date-header">{{item.date}}</view>
+
+      <view wx:for="{{item.items}}" wx:key="_id" wx:for-item="record" class="timeline__item">
+        <view class="timeline__dot {{record.isMe ? 'timeline__dot--me' : 'timeline__dot--partner'}}"></view>
+        <view class="timeline__content">
+          <text class="timeline__time">{{record.timeStr}}</text>
+          <text class="timeline__desc">
+            <text class="timeline__actor">{{record.isMe ? '我' : 'TA'}}</text>
+            切换为「{{record.emoji}} {{record.status}}」
+            <text wx:if="{{record.moodLabel}}" class="timeline__mood">心情：{{record.moodEmoji}} {{record.moodLabel}}</text>
+          </text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:if="{{!loading && groupedHistory.length === 0}}" class="empty-state" style="margin-top: 160rpx;">
+    <text class="empty-state__icon">📋</text>
+    <text class="empty-state__text">暂无状态记录</text>
+  </view>
+
+  <!-- 加载更多 -->
+  <view wx:if="{{hasMore}}" class="history__more" bind:tap="loadMore">
+    <text>加载更多</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="empty-state" style="margin-top: 160rpx;">
+    <text class="empty-state__text">加载中...</text>
+  </view>
+</view>

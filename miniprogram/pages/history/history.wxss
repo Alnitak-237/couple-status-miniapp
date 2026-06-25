@@ -1,0 +1,115 @@
+/* pages/history/history.wxss */
+
+.page-history {
+  min-height: 100vh;
+  background: var(--primary-bg);
+  padding-bottom: 40rpx;
+}
+
+/* 筛选 Tab */
+.history__tabs {
+  display: flex;
+  background: #FFFFFF;
+  padding: 12rpx 32rpx;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.history__tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  border-bottom: 3rpx solid transparent;
+  transition: all 0.2s;
+}
+
+.history__tab--active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 600;
+}
+
+/* 时间线 */
+.history__timeline {
+  padding: 24rpx 40rpx;
+}
+
+.timeline__date-header {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 20rpx 0 16rpx;
+  position: relative;
+}
+
+.timeline__item {
+  display: flex;
+  padding: 16rpx 0 16rpx 28rpx;
+  position: relative;
+  border-left: 2rpx solid #F0F0F0;
+}
+
+.timeline__item:last-child {
+  border-left-color: transparent;
+}
+
+.timeline__dot {
+  position: absolute;
+  left: -8rpx;
+  top: 24rpx;
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #CCCCCC;
+}
+
+.timeline__dot--me {
+  background: #FFB347;
+}
+
+.timeline__dot--partner {
+  background: var(--primary);
+}
+
+.timeline__content {
+  flex: 1;
+  margin-left: 16rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+}
+
+.timeline__time {
+  font-size: 24rpx;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.timeline__desc {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.timeline__actor {
+  font-weight: 600;
+}
+
+.timeline__mood {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-left: 8rpx;
+}
+
+/* 加载更多 */
+.history__more {
+  text-align: center;
+  padding: 32rpx;
+  color: var(--primary);
+  font-size: 28rpx;
+}

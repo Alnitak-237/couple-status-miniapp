@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/bind/bind",
+    "pages/history/history",
+    "pages/notes/notes",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF6B81",
+    "navigationBarTitleText": "心心相连",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF5F5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF6B81",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/images/tab-home.png",
+        "selectedIconPath": "assets/images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "assets/images/tab-history.png",
+        "selectedIconPath": "assets/images/tab-history-active.png"
+      },
+      {
+        "pagePath": "pages/notes/notes",
+        "text": "小纸条",
+        "iconPath": "assets/images/tab-notes.png",
+        "selectedIconPath": "assets/images/tab-notes-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/images/tab-mine.png",
+        "selectedIconPath": "assets/images/tab-mine-active.png"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "设置",
+        "iconPath": "assets/images/tab-settings.png",
+        "selectedIconPath": "assets/images/tab-settings-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

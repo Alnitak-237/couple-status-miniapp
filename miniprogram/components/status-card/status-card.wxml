@@ -1,0 +1,44 @@
+<!-- components/status-card/status-card.wxml -->
+<view class="status-card {{isMine ? 'status-card--mine' : 'status-card--partner'}}"
+      bind:tap="onCardTap"
+      data-is-mine="{{isMine}}">
+
+  <!-- 头部：头像 + 昵称 -->
+  <view class="status-card__header">
+    <view class="status-card__avatar-wrap">
+      <image class="status-card__avatar"
+             src="{{avatarUrl}}"
+             mode="aspectFill"
+             catch:tap="onAvatarTap" />
+      <!-- 在线小圆点 -->
+      <view class="status-card__dot {{online ? 'status-card__dot--online' : ''}}"></view>
+    </view>
+    <view class="status-card__info">
+      <text class="status-card__name">{{nickName}}</text>
+      <text class="status-card__time text-small text-muted">{{timeText}}</text>
+    </view>
+    <!-- 如果是我的卡片，显示切换提示 -->
+    <view wx:if="{{isMine}}" class="status-card__switch-hint">
+      <text class="text-small text-muted">点击切换 ▶</text>
+    </view>
+  </view>
+
+  <!-- 状态主体 -->
+  <view class="status-card__body">
+    <text class="status-card__emoji">{{emoji || '🌟'}}</text>
+    <text class="status-card__status-text">{{statusText || '暂无状态'}}</text>
+  </view>
+
+  <!-- 心情标签 -->
+  <view wx:if="{{moodEmoji}}" class="status-card__mood">
+    <text class="status-card__mood-emoji">{{moodEmoji}}</text>
+    <text class="status-card__mood-label">{{moodLabel}}</text>
+  </view>
+
+  <!-- 快捷操作：发小纸条（仅对方卡片） -->
+  <view wx:if="{{!isMine}}" class="status-card__actions">
+    <view class="status-card__note-btn" catch:tap="onSendNote">
+      <text>💌 发小纸条</text>
+    </view>
+  </view>
+</view>
