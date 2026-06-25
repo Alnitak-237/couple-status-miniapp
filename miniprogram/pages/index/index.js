@@ -55,12 +55,13 @@ Page({
 
   async initPage() {
     try {
-      // 等待 app 初始化完成
+      // 等待 app 初始化完成（最多等 5 秒）
       if (!app.globalData.initialized) {
         await new Promise(resolve => {
+          let waited = 0;
           const check = () => {
-            if (app.globalData.initialized) resolve();
-            else setTimeout(check, 100);
+            if (app.globalData.initialized || waited > 5000) resolve();
+            else { waited += 100; setTimeout(check, 100); }
           };
           check();
         });

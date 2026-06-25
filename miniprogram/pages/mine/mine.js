@@ -121,7 +121,7 @@ Page({
 
   onChangeStatus() {
     // 跳转到首页并触发状态选择
-    wx.switchTab({ url: '/pages/index/index' });
+    wx.reLaunch({ url: '/pages/index/index' });
   },
 
   // ========== 自定义状态 ==========

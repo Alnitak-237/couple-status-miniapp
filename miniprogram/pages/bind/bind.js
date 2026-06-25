@@ -23,7 +23,7 @@ Page({
     // 如果已绑定，返回首页
     if (app.globalData.isBound) {
       wx.showToast({ title: '已绑定', icon: 'none' });
-      setTimeout(() => wx.switchTab({ url: '/pages/index/index' }), 1000);
+      setTimeout(() => wx.reLaunch({ url: '/pages/index/index' }), 1000);
       return;
     }
 
@@ -89,7 +89,7 @@ Page({
 
       // 跳转首页
       setTimeout(() => {
-        wx.switchTab({ url: '/pages/index/index' });
+        wx.reLaunch({ url: '/pages/index/index' });
       }, 1500);
     } catch (err) {
       const msg = err.message || '绑定失败，请检查邀请码';
